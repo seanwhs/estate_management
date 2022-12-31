@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <h5 class="card-header">{{title}} Listing</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+      <p class="card-text">
+        {% for item in iterable %}
+        <ul>
+            <li>{{item}}</li> 
+        </ul>
+        {% endfor %}
+      </p>
+      <a href="{% url 'master-data' %}" class="btn btn-primary">Master Data Management</a>
+    </div>
+  </div>
+  {% endblock content %}
+
+
+   

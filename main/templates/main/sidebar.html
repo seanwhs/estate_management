@@ -1,0 +1,18 @@
+{% load static %}
+<div class="col-3">
+    <div class="container text-center">
+        <img src="{% static 'images/landing.jpg' %}" class="col-md-6 md-3" alt="...">          
+    </div>
+    <hr>
+    <div class="container text-left" >
+        <ul>
+            {% for item in property %}
+                <p> {{item}} </p>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+
+
