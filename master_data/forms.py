@@ -7,16 +7,15 @@ class ManagerForm(ModelForm):
         model = Manager
         fields = (
             'company_name', 'family_name', 'given_name', 
-            'preferred_name', 'phone', 'email', 'start_date',
+            'preferred_name', 'phone', 'email', 
         )
         labels = {
-            'company_name': '',
-            'family_name': '',
-            'given_name': '',
-            'preferred_name': '',
-            'phone': '',
-            'email': '',
-            'start_date': '',
+            'company_name': 'Company Name',
+            'family_name': 'Family Name',
+            'given_name': 'Given Name',
+            'preferred_name': 'Preferred Name',
+            'phone': 'Phone',
+            'email': 'Email',
         }
 
         widgets = {
@@ -26,7 +25,6 @@ class ManagerForm(ModelForm):
             'preferred_name': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Preferred Name'}),
             'phone': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Mobile Phone Number'}),
             'email': forms.EmailInput(attrs={'class':'form-conytrol','placeholder':'Email'}),
-            'start_date': forms.DateInput(attrs={'class':'form-conytrol','placeholder':'Start Date'}),
         }
 
 class PropertyForm(ModelForm):
@@ -34,7 +32,7 @@ class PropertyForm(ModelForm):
         model = Property
         fields =(
             'name', 'type', 'address', 'postal_code', 'phone', 
-            'web', 'email', 'manager', 'contract_period', 'description', 
+            'web', 'email', 'manager', 'contract_period', 'start_date', 'description', 
         )
 
        

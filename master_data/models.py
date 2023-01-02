@@ -7,7 +7,6 @@ class Manager(models.Model):
     preferred_name = models.CharField(max_length=250)
     phone = models.CharField(max_length=10)
     email=models.EmailField()
-    start_date=models.DateField()
 
     def __str__(self):
         return self.preferred_name
@@ -34,6 +33,7 @@ class Property(models.Model):
     email=models.EmailField()
     manager= models.ForeignKey('Manager', null=True, on_delete=models.SET_NULL)
     contract_period=models.CharField(max_length=1, choices=CONTRACT_PERIOD)
+    start_date=models.DateField()
     description=models.TextField(null=True, blank=True)
     def __str__(self):
         return self.name

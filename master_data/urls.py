@@ -4,19 +4,22 @@ from . import views
 from .forms import ModelForm
 
 urlpatterns = [
+    # main master data page
     path('', views.master_data, name='master-data'),
-    path('property/', views.property, name="property-data"),
-    path('owner/', views.owner, name="owner-data"),
-    path('manager/', views.estate_manager, name='estate-manager'),
-    path('unit/', views.unit, name='unit'),
-    path('facility/', views.facility, name='facility'),
+    
+    #estate_manager
+    path('manager_create/', views.manager_form, name='manager-create'), 
+    path('<int:id>/', views.manager_form, name='manager-update'),     
+    path('manager_list/',views.manager_list, name='manager-list'),
+    path('manager_delete/<int:id>/',views.manager_delete, name='manager-delete'),
 
+    #owner
 
-    path('add_manager/', views.add_manager, name='add-manager'),
-    path('add_property/', views.add_property, name='add-property'),
-    path('add_unit/', views.add_unit, name='add-unit'),
-    path('add_owner/', views.add_owner, name='add-owner'),
-    path('add_facility/', views.add_facility, name='add-facility'),
+    #estate_manager
 
+    #property
 
+    #units
+
+    #facility
 ]
