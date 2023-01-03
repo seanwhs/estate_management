@@ -1,5 +1,6 @@
 from django.db import models
-from django.utils import timezone
+from django.db.models.functions import Now
+from django.db.models import Q 
 
 class Manager(models.Model):   
     company_name = models.CharField(max_length=250)
@@ -52,6 +53,14 @@ class Property(models.Model):
     contract_period=models.CharField(max_length=1, choices=CONTRACT_PERIOD)
     start_date=models.DateField()
     description=models.TextField(null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=Q(start_date__lte=Now()),
+                name = "start_date must be less than or equal today"
+            )
+    ]
   
     def __str__(self):
         return self.name
@@ -94,6 +103,14 @@ class Unit(models.Model):
     share_value = models.PositiveIntegerField(null=True, blank=True, default=100)
     ownership_start_date=models.DateField()
     
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=Q(ownership_start_date__lte=Now()),
+                name = "ownership_start_date must be less than or equal today"
+            )
+    ]
+
     def __str__(self):
         string = str(self.property) + ', Blk: ' + str(self.block) + ', Flr: ' + str(self.floor) + ', Unit: ' + str(self.unit_number)
         return string
