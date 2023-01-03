@@ -12,24 +12,26 @@ class ManagerForm(ModelForm):
             'company_name', 'family_name', 'given_name', 
             'preferred_name', 'phone', 'email', 
         )
+        
+
         labels = {
-            'company_name': 'Company Name',
-            'family_name': 'Family Name',
-            'given_name': 'Given Name',
-            'preferred_name': 'Preferred Name',
-            'phone': 'Phone',
-            'email': 'Email',
+            'company_name': '',
+            'family_name': '',
+            'given_name': '',
+            'preferred_name': '',
+            'phone': '',
+            'email': '',
         }
-
         widgets = {
-            'company_name': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Company Name'}),
-            'family_name': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Family Name'}),
-            'given_name': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Given Name'}),
-            'preferred_name': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Preferred Name'}),
-            'phone': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Mobile Phone Number'}),
-            'email': forms.EmailInput(attrs={'class':'form-conytrol','placeholder':'Email'}),
+            'company_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Company Name'}),
+            'family_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Family Name'}),
+            'given_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Given Name'}),
+            'preferred_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Preferred Name'}),
+            'phone': forms.TextInput(attrs={'class':'form-control','placeholder':'Mobile Phone Number'}),
+            'email': forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'}),
         }
 
+        
 class PropertyForm(ModelForm):
     class Meta:
         model = Property
@@ -62,19 +64,19 @@ class OwnerForm(ModelForm):
         )
 
         labels = {
-            'family_name': 'Family Name',
-            'given_name': 'Given Name',
-            'preferred_name': 'Preferred Name',
-            'phone': 'Phone',
-            'email': 'Email',
+            'family_name': '',
+            'given_name': '',
+            'preferred_name': '',
+            'phone': '',
+            'email': '',
         }
 
         widgets = {
-            'family_name': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Family Name'}),
-            'given_name': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Given Name'}),
-            'preferred_name': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Preferred Name'}),
-            'phone': forms.TextInput(attrs={'class':'form-conytrol','placeholder':'Mobile Phone'}),
-            'email': forms.EmailInput(attrs={'class':'form-conytrol','placeholder':'Email'}),
+            'family_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Family Name'}),
+            'given_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Given Name'}),
+            'preferred_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Preferred Name'}),
+            'phone': forms.TextInput(attrs={'class':'form-control','placeholder':'Mobile Phone'}),
+            'email': forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'}),
         }
 
 

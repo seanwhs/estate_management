@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Manager(models.Model):   
     company_name = models.CharField(max_length=250)
@@ -6,7 +7,18 @@ class Manager(models.Model):
     given_name = models.CharField(max_length=250)
     preferred_name = models.CharField(max_length=250)
     phone = models.CharField(max_length=10)
-    email=models.EmailField()
+    email=models.EmailField(
+        unique=True, 
+        error_messages={
+            'unique':'Thie email has already ben registered'
+        }
+        )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['given_name', 'family_name'], name='unique_manager'),
+        ]
+        
 
     def __str__(self):
         return self.preferred_name
@@ -30,11 +42,17 @@ class Property(models.Model):
     postal_code = models.CharField(max_length=10)
     phone = models.CharField(max_length=10)
     web = models.URLField()
-    email=models.EmailField()
+    email=models.EmailField(
+        unique=True, 
+        error_messages={
+            'unique':'Thie email has already ben registered'
+        }
+        )
     manager= models.ForeignKey('Manager', null=True, on_delete=models.SET_NULL)
     contract_period=models.CharField(max_length=1, choices=CONTRACT_PERIOD)
     start_date=models.DateField()
     description=models.TextField(null=True, blank=True)
+  
     def __str__(self):
         return self.name
 
@@ -43,6 +61,7 @@ class Facility(models.Model):
     name=models.CharField(max_length=50)
     type=models.CharField(max_length=50)
     description=models.TextField()
+
     def __str__(self):
         return str(self.property) + ', Facility: ' + str(self.name)
        
@@ -51,7 +70,17 @@ class Owner(models.Model):
     given_name = models.CharField(max_length=250)
     preferred_name = models.CharField(max_length=250)
     phone = models.CharField(max_length=10)
-    email=models.EmailField()
+    email=models.EmailField(
+        unique=True, 
+        error_messages={
+            'unique':'Thie email has already ben registered'
+        }
+        )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['given_name', 'family_name'], name='unique_owner'),
+        ]
 
     def __str__(self):
         return self.preferred_name
@@ -64,6 +93,7 @@ class Unit(models.Model):
     owner = models.ForeignKey(Owner, null=True, blank=True, on_delete=models.SET_NULL)
     share_value = models.PositiveIntegerField(null=True, blank=True, default=100)
     ownership_start_date=models.DateField()
+    
     def __str__(self):
         string = str(self.property) + ', Blk: ' + str(self.block) + ', Flr: ' + str(self.floor) + ', Unit: ' + str(self.unit_number)
         return string
@@ -83,6 +113,12 @@ class Facility(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     property = models.ForeignKey(Property, null=True, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['property', 'name'], name='unique_facility'),
+        ]
+
     def __str__(self):
         return  str(self.property) + ', Facility: ' + str(self.name) + ', ' + str(self.type)
 

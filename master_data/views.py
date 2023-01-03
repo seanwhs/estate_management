@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from .models import Manager, Property, Unit, Facility, Owner
 from .forms import ManagerForm, PropertyForm, UnitForm, OwnerForm, FacilityForm 
 
@@ -30,11 +31,15 @@ def manager_form(request, id=0):
             form = ManagerForm(request.POST,instance= manager)
         if form.is_valid():
             form.save()
+            messages.success(request, ('Manager has been saved successfuly!'))
+        else:
+            messages.success(request, (str(form.errors)))
         return redirect('manager-list')
 
 def manager_delete(request, id):
     manager = Manager.objects.get(pk=id)
     manager.delete()
+    messages.success(request, ('Manager has been deleted!'))
     return redirect('manager-list')
 
 #owner
@@ -58,11 +63,15 @@ def owner_form(request, id=0):
             form = OwnerForm(request.POST,instance= owner)
         if form.is_valid():
             form.save()
+            messages.success(request, ('Owner has been saved successfuly!'))
+        else:
+            messages.success(request, (str(form.errors)))
         return redirect('owner-list')
 
 def owner_delete(request, id):
     owner = Owner.objects.get(pk=id)
     owner.delete()
+    messages.success(request, ('Owner has been deleted!'))
     return redirect('owner-list')
 
 #property
@@ -86,11 +95,15 @@ def property_form(request, id=0):
             form = PropertyForm(request.POST,instance= property)
         if form.is_valid():
             form.save()
+            messages.success(request, ('Property has been saved successfuly!'))
+        else:
+            messages.success(request, (str(form.errors)))
         return redirect('property-list')
 
 def property_delete(request, id):
     property = Property.objects.get(pk=id)
     property.delete()
+    messages.success(request, ('Property has been deleted!'))
     return redirect('property-list')
 
 #units
@@ -114,11 +127,15 @@ def unit_form(request, id=0):
             form = UnitForm(request.POST,instance= unit)
         if form.is_valid():
             form.save()
+            messages.success(request, ('Unit has been saved successfuly!'))
+        else:
+            messages.success(request, (str(form.errors)))
         return redirect('unit-list')
 
 def unit_delete(request, id):
     property = Unit.objects.get(pk=id)
     property.delete()
+    messages.success(request, ('Unit has been deleted!'))
     return redirect('unit-list')
 
 #facility
@@ -142,9 +159,13 @@ def facility_form(request, id=0):
             form = FacilityForm(request.POST,instance= facility)
         if form.is_valid():
             form.save()
+            messages.success(request, ('Facility has been saved successfuly!'))
+        else:
+            messages.success(request, (str(form.errors)))
         return redirect('facility-list')
 
 def facility_delete(request, id):
     property = Facility.objects.get(pk=id)
     property.delete()
+    messages.success(request, ('Facility has been deleted!'))
     return redirect('facility-list')

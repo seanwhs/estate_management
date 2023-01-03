@@ -21,7 +21,11 @@
     </head>
     <body class="sb-nav-fixed">
         <div> {% include 'navbar.html' %} </div>
-
+        {% for message in messages%}
+            <h6 class="alert alert-success">
+                {{message}}
+            </h6>
+        {% endfor%}
         {% block content%}
         {% endblock content%}
 
