@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+    
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <br/><br/>
+    <div class="container">    
+        <div class="row">
+            <div class="col-md-4">
+                {{form.property|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.block|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.floor|as_crispy_field}}
+            </div>
+            <div class="col-md-4">
+                {{form.unit_number|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{form.owner|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+                {{form.share_value|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+                {{form.ownership_start_date|as_crispy_field}}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                    Submit</button>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'unit-list' %}" class="btn btn-secondary btn-block btn-lg">
+                    <i class="fas fa-stream"></i> Back to list
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}

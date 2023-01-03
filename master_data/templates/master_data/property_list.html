@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+<div class="container">
+    <div class="col-md-10 offset-md-1 mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Property List</h1>
+            <hr class="my-4">
+            {% block content %}
+            <table class="table table-borderless">
+                <thead class="border-bottom font-weight-bold">
+                    <tr>
+                        <td>Property Name</td>
+                        <td>Lease Type</td>
+                        <td>Address</td>
+                        <td>Postal Code</td>
+                        <td>Web Address</td>
+                        <td>Email</td>
+                        <td>Estate Manager</td>
+                        <td>Contract Period</td>
+                        <td>Manager Contract Start Date</td>
+                        <td>Property Desription</td>
+
+
+                        <td>
+                            <a href="{% url 'property-create' %}" class="btn btn-outline-success">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for property in property_list %}
+                        <tr>
+                            <td>{{property.name}}</td>
+                            <td>{{property.type}}</td>
+                            <td>{{property.address}}</td>
+                            <td>{{property.postal_code}}</td>
+                            <td>{{property.phone}}</td>
+                            <td>{{property.web}}</td>
+                            <td>{{property.email}}</td>
+                            <td>{{property.manager}}</td>
+                            <td>{{property.email}}</td>
+                            <td>{{property.start_date}}</td>
+                            <td>{{property.description}}</td>
+
+                            <td>
+                                <a href="{% url 'property-update' property.id %}" class="btn text-secondary px-0">
+                                    <i class="far fa-edit fa-lg"></i>
+                                </a>
+                                <form action="{% url 'property-delete' property.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn">
+                                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            {% endblock content %}
+        </div>
+    </div>
+</div>

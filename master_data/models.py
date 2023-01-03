@@ -60,12 +60,12 @@ class Unit(models.Model):
     property=models.ForeignKey(Property, on_delete=models.CASCADE)
     block=models.CharField(max_length=50, null=True, blank=True)
     floor=models.CharField(max_length=50, null=True, blank=True)
-    unit_number=models.CharField(max_length=3)   
+    unit_number=models.CharField(max_length=10)   
     owner = models.ForeignKey(Owner, null=True, blank=True, on_delete=models.SET_NULL)
     share_value = models.PositiveIntegerField(null=True, blank=True, default=100)
     ownership_start_date=models.DateField()
     def __str__(self):
-        string = str(self.property.name) + ', Blk: ' + str(self.block) + ', Flr: ' + str(self.floor) + ', Unit: ' + str(self.unit_number)
+        string = str(self.property) + ', Blk: ' + str(self.block) + ', Flr: ' + str(self.floor) + ', Unit: ' + str(self.unit_number)
         return string
 
 class Facility(models.Model):

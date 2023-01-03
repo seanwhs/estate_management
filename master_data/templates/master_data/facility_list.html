@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+<div class="container">
+    <div class="col-md-10 offset-md-1 mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Facility List</h1>
+            <hr class="my-4">
+            {% block content %}
+            <table class="table table-borderless">
+                <thead class="border-bottom font-weight-bold">
+                    <tr>
+                        <td>Facility Name</td>
+                        <td>Facility Type</td>
+                        <td>Quantity in Estate</td>
+                        <td>Property name</td>
+                        <td>Decsription</td>
+
+                        <td>
+                            <a href="{% url 'facility-create' %}" class="btn btn-outline-success">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for facility in facility_list %}
+                        <tr>
+                            <td>{{facility.name}}</td>
+                            <td>{{facility.type}}</td>
+                            <td>{{facility.quantity}}</td>
+                            <td>{{facility.property}}</td>
+                            <td>{{facility.description}}</td>
+
+                            <td>
+                                <a href="{% url 'facility-update' facility.id %}" class="btn text-secondary px-0">
+                                    <i class="far fa-edit fa-lg"></i>
+                                </a>
+                                <form action="{% url 'facility-delete' facility.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn">
+                                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            {% endblock content %}
+        </div>
+    </div>
+</div>
