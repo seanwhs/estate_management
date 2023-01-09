@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Billing List</h5>
+          <a href="{% url 'billing-list' %}" class="btn btn-primary">Start Working </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">PDF</h5>
+          <a href="#" class="btn btn-primary">Start Working </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Email</h5>
+          <a href="#" class="btn btn-primary">Start Working </a>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+{% endblock content %}

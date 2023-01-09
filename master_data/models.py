@@ -100,8 +100,10 @@ class Unit(models.Model):
     floor=models.CharField(max_length=50, null=True, blank=True)
     unit_number=models.CharField(max_length=10)   
     owner = models.ForeignKey(Owner, null=True, blank=True, on_delete=models.SET_NULL)
-    share_value = models.PositiveIntegerField(null=True, blank=True, default=100)
+    share_value = models.PositiveIntegerField(default=100)
     ownership_start_date=models.DateField()
+    maintenance_fee_monthly = models.DecimalField(max_digits=10, decimal_places=2)
+    sinking_fund_monthly = models.DecimalField(max_digits=10, decimal_places=2)
     
     class Meta:
         constraints = [
@@ -114,6 +116,12 @@ class Unit(models.Model):
     def __str__(self):
         string = str(self.property) + ', Blk: ' + str(self.block) + ', Flr: ' + str(self.floor) + ', Unit: ' + str(self.unit_number)
         return string
+
+    # @property
+    # def maint_clac(self):
+    #     return (self.maintenance_fee_monthly * self.share_value) / 100 
+
+
 
 class Facility(models.Model):
     FACILITY_TYPE = [
@@ -139,3 +147,5 @@ class Facility(models.Model):
     def __str__(self):
         return  str(self.property) + ', Facility: ' + str(self.name) + ', ' + str(self.type)
 
+
+    

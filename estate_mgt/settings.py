@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+os.environ["PATH"] += os.pathsep + 'C:\\Program Files\\Graphviz\\bin'
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,9 +45,13 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'register.apps.RegisterConfig',
     'master_data.apps.MasterDataConfig',
+    'billing.apps.BillingConfig',
 
     'crispy_forms',
     'crispy_bootstrap5',  
+    'django_extensions', 
+    'django_template_maths',
+    'mathfilters',
 
 ]
 
@@ -140,3 +147,4 @@ MEDIA_ROOT = BASE_DIR / "static/images"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+

@@ -48,8 +48,8 @@ class UnitForm(ModelForm):
     class Meta:
         model = Unit
         fields=(
-            'property', 'block', 'floor', 'unit_number', 'owner',
-            'share_value', 'ownership_start_date',
+            'property', 'block', 'floor', 'unit_number', 'owner', 'share_value', 
+            'ownership_start_date', 'maintenance_fee_monthly', 'sinking_fund_monthly' 
         )
         widgets = {
             'ownership_start_date': DateInput(),

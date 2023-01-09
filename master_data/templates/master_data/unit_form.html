@@ -7,16 +7,16 @@
     <br/><br/>
     <div class="container">    
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{form.property|as_crispy_field}}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{form.block|as_crispy_field}}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{form.floor|as_crispy_field}}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{form.unit_number|as_crispy_field}}
             </div>
         </div>
@@ -29,7 +29,15 @@
             </div>
             <div class="col-md-6">
                 {{form.ownership_start_date|as_crispy_field}}
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{form.maintenance_fee_monthly|as_crispy_field}}
             </div>
+            <div class="col-md-6">
+                {{form.sinking_fund_monthly|as_crispy_field}}
+            </div>                    
         </div>
         <hr>
         <div class="row">
