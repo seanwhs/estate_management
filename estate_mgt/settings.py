@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'django_extensions', 
     'django_template_maths',
     'mathfilters',
-
 ]
 
 MIDDLEWARE = [
@@ -147,4 +146,6 @@ MEDIA_ROOT = BASE_DIR / "static/images"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
 

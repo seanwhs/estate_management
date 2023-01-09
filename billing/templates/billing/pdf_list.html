@@ -1,0 +1,113 @@
+{% load mathfilters %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Title</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+            @page {
+                size: a4 landscape;
+                margin: 2cm;
+            }
+        </style>
+    </head>
+    <body>
+        <body>
+            <body>
+                <div class='wrapper'>
+                    <div class='header'>
+                        <p class='title'>Bill List </p>
+                    </div>
+                <div>
+                    <div class='details'>
+                        Date: {{today}}
+                        <hr class='hrItem' />
+                    </div>
+                </div>
+
+       
+                <div>
+                    <div class='details'>
+                        <table class="table table-borderless">
+                            <thead class="border-bottom font-weight-bold">
+                                <tr>
+                                    <td>Property Name</td>
+                                    <td>Block</td>
+                                    <td>Floor Number</td>
+                                    <td>Unit Number</td>
+                                    <td>Owner</td>
+                                    <td>Share Value</td>
+                                    <td>Ownership Start Date</td>
+                                    <td>Monthly Maintenance Fee Payable</td>
+                                    <td>Monthly Sinking Fund Payable</td>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for unit in list %}
+                                    <tr>
+                                        <td>{{unit.property}}</td>
+                                        <td>{{unit.block}}</td>
+                                        <td>{{unit.floor}}</td>
+                                        <td>{{unit.unit_number}}</td>
+                                        <td>{{unit.owner}}</td>
+                                        <td>{{unit.share_value}}</td>
+                                        <td>{{unit.ownership_start_date}}</td>
+                                        {% with unit.maintenance_fee_monthly as maint %} 
+                                            {% with unit.share_value as share %} 
+                                                <td>{{maint|mul:share|div:100}}</td>
+                                            {% endwith %}
+                                        {% endwith %}
+                                        {% with unit.sinking_fund_monthly as sink %} 
+                                            {% with unit.share_value as share %} 
+                                                <td>{{sink|mul:share|div:100}}</td>
+                                            {% endwith %}
+                                        {% endwith %}
+                                    </tr>
+                                {% endfor %}
+            
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+
+                </table>
+            </body>
+        
+        </body>
+    </body>
+       
+</html>

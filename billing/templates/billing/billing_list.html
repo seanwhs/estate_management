@@ -1,8 +1,5 @@
 {% extends "base.html" %}
-{% load django_template_maths %}
 {% load mathfilters %}
-
-
 
 <div class="container">
     <div class="col-md-10 offset-md-1 mt-5">
@@ -33,7 +30,11 @@
                         <td>Ownership Start Date</td>
                         <td>Monthly Maintenance Fee Payable</td>
                         <td>Monthly Sinking Fund Payable</td>
-
+                        <td>
+                            <a href="{% url 'pdf-list' %}" class="btn btn-outline-success">
+                                <i class="fa-thin fa-file-pdf"></i> PDF
+                            </a>
+                        </td>
 
                       
                     </tr>
