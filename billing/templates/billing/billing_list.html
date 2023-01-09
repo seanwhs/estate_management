@@ -10,6 +10,17 @@
             <h1 class="display-4">Unit List</h1>
             <hr class="my-4">
             {% block content %}
+            <form class="d-flex" role="search" action="{% url 'billing-list' %}">
+                
+                <input class="form-control me-2" 
+                    type="search" 
+                    placeholder="Search for OWNER, PROPERTY, BLK or UNIT NUMBER" 
+                    aria-label="Search" 
+                    name="search">
+
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
             <table class="table table-borderless">
                 <thead class="border-bottom font-weight-bold">
                     <tr>

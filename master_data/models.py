@@ -99,7 +99,7 @@ class Unit(models.Model):
     block=models.CharField(max_length=50, null=True, blank=True)
     floor=models.CharField(max_length=50, null=True, blank=True)
     unit_number=models.CharField(max_length=10)   
-    owner = models.ForeignKey(Owner, null=True, blank=True, on_delete=models.SET_NULL)
+    owner = models.ForeignKey(Owner, null=True, blank=True, on_delete=models.SET_NULL) 
     share_value = models.PositiveIntegerField(default=100)
     ownership_start_date=models.DateField()
     maintenance_fee_monthly = models.DecimalField(max_digits=10, decimal_places=2)

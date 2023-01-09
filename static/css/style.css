@@ -216,6 +216,7 @@
     color: var(--color-light) !important;
     font-weight: 500;
     font-size: 1.4rem;
+    float: right;
   }
   
   .dropdown-menu a:hover {

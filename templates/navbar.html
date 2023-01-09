@@ -26,9 +26,9 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-right" >
               {% if request.user.is_authenticated %}
-                <li><a class="dropdown-item" href="{% url 'logout_user' %}">Logout</a></li>
+                <li><a class="dropdown-item " href="{% url 'logout_user' %}">Logout</a></li>
               {% else %}
                 <li>
                   <a  href="{% url 'login_user' %}" class="dropdown-item">Login</a>
@@ -40,10 +40,10 @@
           </li>
           
         </ul>
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </div>
   </nav>
