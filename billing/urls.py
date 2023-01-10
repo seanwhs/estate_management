@@ -9,5 +9,6 @@ urlpatterns = [
     path('', views.billing_main, name='billing-main'),
     path('list/', views.billing_list, name='billing-list'),
     path('pdf/', GeneratePdf.as_view(), name='pdf-list'),
-   
+    path('email/', views.send_email, name='email'),
+
     ]

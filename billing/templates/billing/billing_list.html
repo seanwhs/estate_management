@@ -18,6 +18,9 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
 
+
+               
+        
             <table class="table table-borderless">
                 <thead class="border-bottom font-weight-bold">
                     <tr>
@@ -33,6 +36,9 @@
                         <td>
                             <a href="{% url 'pdf-list' %}" class="btn btn-outline-success">
                                 <i class="fa-thin fa-file-pdf"></i> PDF
+                            </a>
+                            <a href="{% url 'email' %}" class="btn text-secondary px-0">
+                                <i class="fa-solid fa-envelope"></i> Email
                             </a>
                         </td>
 
