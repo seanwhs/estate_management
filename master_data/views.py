@@ -108,7 +108,10 @@ def property_delete(request, id):
 
 #units
 def unit_list(request):
-    context = {'unit_list': Unit.objects.all()}
+
+    context = {
+        'unit_list': Unit.objects.all(),
+        }
     return render(request, "master_data/unit_list.html", context)
 
 def unit_form(request, id=0):

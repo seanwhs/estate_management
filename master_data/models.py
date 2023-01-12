@@ -104,7 +104,7 @@ class Unit(models.Model):
     ownership_start_date=models.DateField()
     maintenance_fee_monthly = models.DecimalField(max_digits=10, decimal_places=2)
     sinking_fund_monthly = models.DecimalField(max_digits=10, decimal_places=2)
-    
+
     class Meta:
         constraints = [
             models.CheckConstraint(
@@ -113,15 +113,19 @@ class Unit(models.Model):
             )
     ]
 
+    # def clean(self):
+    #     super().clean()
+    #     self.calc_maint_fee = (self.maintenance_fee_monthly * self.share_value)/100
+
+    # @property
+    # def maintenance_payable(self):
+    #     return (self.maintenance_fee_monthly * self.share_value)
+    
     def __str__(self):
         string = str(self.property) + ', Blk: ' + str(self.block) + ', Flr: ' + str(self.floor) + ', Unit: ' + str(self.unit_number)
         return string
 
-    # @property
-    # def maint_clac(self):
-    #     return (self.maintenance_fee_monthly * self.share_value) / 100 
-
-
+   
 
 class Facility(models.Model):
     FACILITY_TYPE = [

@@ -9,6 +9,8 @@ from .utils import *
 import datetime
 import pdfkit
 import os
+from django.contrib import messages
+
 
 from django.core.mail import EmailMessage, get_connection
 from django.template.loader import render_to_string 
@@ -33,10 +35,23 @@ def billing_list(request):
     elif not search_bill or search_bill == '':
         request.session['search_bill'] = ''
         # If not searched, return default biling list
-        list=Unit.objects.all()    
+        list=Unit.objects.all()
+
+    maint_total = 0
+    sink_total=0
+    for unit in list:
+        maint_payable = (unit.maintenance_fee_monthly * unit.share_value)/100
+        sink_payable = (unit.sinking_fund_monthly * unit.share_value)/100
+        maint_total += maint_payable
+        sink_total += sink_payable
+
     context = {
         'unit_list': list,
-        }
+        'maint_total': maint_total,
+        'sink_total': sink_total,
+            }
+
+    
     return render(request, "billing/billing_list.html", context)
 
 
@@ -58,11 +73,22 @@ class GeneratePdf(View):
             # If not searched, return default biling list
             list=Unit.objects.all()
                
+       
+        maint_total = 0
+        sink_total=0
+        for unit in list:
+            maint_payable = (unit.maintenance_fee_monthly * unit.share_value)/100
+            sink_payable = (unit.sinking_fund_monthly * unit.share_value)/100
+            maint_total += maint_payable
+            sink_total += sink_payable
+
         context = {
             'today': datetime.date.today(), 
             'list': list,
+            'maint_total': maint_total,
+            'sink_total': sink_total,
+                }
 
-            }
         pdf = render_to_pdf('billing/pdf_list.html', context)
         return HttpResponse(pdf, content_type='application/pdf')
 
@@ -84,11 +110,21 @@ def send_email(request):
         # If not searched, return default biling list
         list=Unit.objects.all()
             
+    maint_total = 0
+    sink_total=0
+    for unit in list:
+        maint_payable = (unit.maintenance_fee_monthly * unit.share_value)/100
+        sink_payable = (unit.sinking_fund_monthly * unit.share_value)/100
+        maint_total += maint_payable
+        sink_total += sink_payable
+
     context = {
         'today': datetime.date.today(), 
         'list': list,
-
-        }
+        'maint_total': maint_total,
+        'sink_total': sink_total,
+            }
+    
 
     #HTML FIle to be converted to PDF - inside your Django directory
     template = get_template('billing/pdf_list.html')
@@ -125,6 +161,8 @@ def send_email(request):
     to_email = 'seanwhs@hotmail.com'
     from_client = 'seanwhs@hotmail.com'
     email_bill(to_email, from_client, pdf_save_path)
+    messages.success(request, "Email sent succesfully")
+
 
 
     #Email was send, redirect back to view - invoice

@@ -55,19 +55,26 @@
                             <td>{{unit.owner}}</td>
                             <td>{{unit.share_value}}</td>
                             <td>{{unit.ownership_start_date}}</td>
+
                             {% with unit.maintenance_fee_monthly as maint %} 
                                 {% with unit.share_value as share %} 
                                     <td>{{maint|mul:share|div:100}}</td>
                                 {% endwith %}
                             {% endwith %}
+
                             {% with unit.sinking_fund_monthly as sink %} 
                                 {% with unit.share_value as share %} 
                                     <td>{{sink|mul:share|div:100}}</td>
                                 {% endwith %}
                             {% endwith %}
+                                                        
                         </tr>
-                    {% endfor %}
-
+                    {% endfor %}     
+                    <tr>
+                        <td colspan="7"><strong>Total</strong></td>
+                        <td><strong>{{maint_total}}</strong></td>
+                        <td><strong>{{sink_total}}</strong></td>
+                    </tr>               
                 </tbody>
             </table>
 
